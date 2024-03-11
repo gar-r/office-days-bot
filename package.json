@@ -1,0 +1,15 @@
+{
+  "name": "office-day-robot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Richard Garai",
+  "license": "GPL-3.0-only",
+  "devDependencies": {
+    "electron": "^29.1.1",
+    "selenium-webdriver": "^4.18.1"
+  }
+}
