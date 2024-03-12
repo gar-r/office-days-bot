@@ -4,7 +4,9 @@ import utils from 'enquirer/lib/utils.js'
 
 const { ArrayPrompt } = enquirer;
 
-// This is a patched version of the Scale prompt, to fix a bug with initial values
+// This is a patched version of the Scale prompt, to fix a bug with initial values.
+// Remove this file, and replace with the original component from enquirer once
+// https://github.com/enquirer/enquirer/issues/455 is fixed.
 export class Scale extends ArrayPrompt {
   constructor(options = {}) {
     super(options);
@@ -33,7 +35,7 @@ export class Scale extends ArrayPrompt {
 
     for (let ch of this.choices) {
       longest = Math.max(longest, ch.message.length);
-      ch.scaleIndex = ch.initial;
+      ch.scaleIndex = (typeof ch.initial !== 'undefined') ? ch.initial : 2;
       ch.scale = [];
 
       for (let i = 0; i < this.scale.length; i++) {

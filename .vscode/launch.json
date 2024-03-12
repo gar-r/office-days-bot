@@ -4,11 +4,11 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
+            "name": "automation",
             "skipFiles": [
                 "<node_internals>/**"
             ],
-            "program": "${workspaceFolder}/main.js"
+            "program": "${workspaceFolder}/automation.js"
         }
     ]
 }
