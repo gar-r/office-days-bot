@@ -1,18 +1,13 @@
-const { app, BrowserWindow } = require('electron')
+import { fetchDays } from "./agent.js";
+import { startUserReview } from "./review.js";
 
-const createWindow = () => {
-    const win = new BrowserWindow({
-        width: 800,
-        height: 600
-    })
-
-    win.loadFile('index.html')
+//const data = await fetchDays();
+const days = {
+    "20240103": true,
+    "20240101": false,
+    "20240102": false,
+    "20240104": true,
 }
 
-app.whenReady().then(() => {
-    createWindow()
-})
-
-app.on('window-all-closed', () => {
-    app.quit()
-})
+const res = await startUserReview(days);
+console.log(res);
