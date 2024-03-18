@@ -32,5 +32,20 @@ const sortDays = (daysMap) => {
 }
 
 const getInitialValue = (daysMap, day) => {
-    return daysMap[day] ? PromptValueOffice : PromptValueHome;
+    // return the prompt value for office/home, however we want
+    // to skip weekends, unless office was logged on that day
+    return daysMap[day]
+        ? PromptValueOffice
+        : isWeekend(day)
+            ? PromptValueSkip
+            : PromptValueOffice;
+}
+
+const isWeekend = (day) => {
+    const y = Number(date.substring(0, 4));
+    const m = Number(date.substring(4, 6));
+    const d = Number(date.substring(6, 8));
+    const date = new Date(y, m, d);
+    const weekday = date.getDay();
+    return weekday === 5 || weekday === 6;
 }
