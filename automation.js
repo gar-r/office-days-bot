@@ -1,7 +1,8 @@
-import { Builder, Browser, By, until } from "selenium-webdriver";
-import ora from "ora";
+import { withProgress } from "./progress.js";
+import { PromptValueHome, PromptValueOffice } from "./review.js";
+import { Builder, Browser, By } from "selenium-webdriver";
 import fs from "fs";
-import { PromptValueHome, PromptValueOffice, PromptValueSkip } from "./review.js";
+
 
 const cookiesFile = './cookies.json';
 const loginUrl = "https://app.timetastic.co.uk/login/";
@@ -9,10 +10,7 @@ const calendarUrl = "https://app.timetastic.co.uk/calendar";
 const wfo = "Work from the office";
 const wfh = "Work from home";
 
-
-const progress = ora();
-
-const automateFillout = async (choices) => {
+export const automateFillout = async (choices) => {
     const driver = await new Builder().forBrowser(Browser.FIREFOX).build();
     try {
         await withProgress("configuring web driver", async () => {
@@ -151,21 +149,3 @@ const openCalendar = async (driver) => {
 const sleep = (ms) => {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
-
-const withProgress = async (msg, fn) => {
-    try {
-        progress.start(msg.progress || msg);
-        await fn();
-        progress.succeed(msg.succeed || null);
-    } catch (e) {
-        progress.fail(msg.fail ? msg.fail.replace("$$e", e.message || "") : null);
-        throw e;
-    }
-}
-
-await automateFillout({
-    "20240311": 0,
-    "20240312": 1,
-    "20240313": 2,
-    "20240314": 0,
-});
