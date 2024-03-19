@@ -128,17 +128,24 @@ const processDate = async (driver, date, type) => {
     }
 
     const submitDate = async (driver) => {
-        // const submitButton = await driver.findElement(By.id("submit_holiday"));
-        const submitButton = await driver.findElement(By.className("close-book"));
+        const submitButton = await driver.findElement(By.id("submit_holiday"));
         await submitButton.click();
         await sleep(500);   // modal fade-out animation
     }
 
-    await openDate(driver, date);
-    try {
+    const closeDate = async (driver) => {
+        const closeButton = await driver.findElement(By.className("close-book"));
+        await closeButton.click();
+        await sleep(500);   // modal fade-out animation
+    }
+
+    try{
+        await openDate(driver, date);
         await selectType(driver, type);
-    } finally {
         await submitDate(driver);
+    } catch(e) {
+        await closeDate(driver);
+        throw e;
     }
 }
 
