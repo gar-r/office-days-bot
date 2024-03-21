@@ -1,6 +1,6 @@
 # Office Days Bot
 
-This is the automated time-sheet filler component, using the data collected by [office-days-agent](https://git.okki.hu/garrichs/office-days-agent.git).
+This is the automated time-sheet filler component, using the data collected by [office-days-agent](https://github.com/gar-r/office-days-agent).
 
 ## Installation
 
@@ -46,4 +46,4 @@ You may completely replace the agent with your own implementation, if you implem
    * `/list`: return a json document with the days data
    * `/clear`: clears the days data after it has been processed
 
-Check the agent API for more information: https://git.okki.hu/garrichs/office-days-agent.git.
+Check the agent API for more information: https://github.com/gar-r/office-days-agent.
